@@ -1,0 +1,7 @@
+{
+  "name": "Soundscape Brantford",
+  "description": "A voice-interactive city guide for Brantford using Gemini Live API.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
