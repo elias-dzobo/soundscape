@@ -99,7 +99,16 @@ const App: React.FC = () => {
 
           {appState === AppState.CONNECTED && (
             <div className="w-full flex justify-center transition-all duration-500">
-              {displayInfo.type === 'GREETING' && (
+              {displayInfo.type === 'WEATHER' && displayInfo.data && (
+                <WeatherCard data={displayInfo.data as WeatherData} />
+              )}
+              {displayInfo.type === 'CONSTRUCTION' && displayInfo.data && (
+                <ConstructionCard data={displayInfo.data as ConstructionUpdate[]} />
+              )}
+              {displayInfo.type === 'EVENTS' && displayInfo.data && (
+                <EventsCard data={displayInfo.data as EventData[]} />
+              )}
+              {(displayInfo.type === 'GREETING' || displayInfo.type === null || (!displayInfo.data && displayInfo.type !== 'WEATHER' && displayInfo.type !== 'CONSTRUCTION' && displayInfo.type !== 'EVENTS')) && (
                  <div className="text-center space-y-4 max-w-sm">
                     <div className="text-6xl animate-bounce">👋</div>
                     <p className="text-2xl font-light text-white">"Hello! I'm Soundscape Brantford."</p>
@@ -109,15 +118,6 @@ const App: React.FC = () => {
                       <div className="bg-gray-800 p-2 rounded">Upcoming Events</div>
                     </div>
                  </div>
-              )}
-              {displayInfo.type === 'WEATHER' && displayInfo.data && (
-                <WeatherCard data={displayInfo.data as WeatherData} />
-              )}
-              {displayInfo.type === 'CONSTRUCTION' && displayInfo.data && (
-                <ConstructionCard data={displayInfo.data as ConstructionUpdate[]} />
-              )}
-              {displayInfo.type === 'EVENTS' && displayInfo.data && (
-                <EventsCard data={displayInfo.data as EventData[]} />
               )}
             </div>
           )}
